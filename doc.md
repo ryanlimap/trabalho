@@ -227,8 +227,6 @@ async def generate_gherkin_file(evento: Evento):
 
 ## 📚 Referências Bibliográficas
 
-adicionar os links da galera depois ***(refs.md)***
-
 1. https://medium.com/@gabrielfernandeslemos/clean-architecture-uma-abordagem-baseada-em-princípios-bf9866da1f9c
 
 2. https://www.alura.com.br/artigos/como-resolver-erro-de-cross-origin-resource-sharing?srsltid=AfmBOorV-xhK1EvpyB2zY9hm9hDnIj3HivlXWoIbFQJZE9jbESQLfXbC
@@ -236,6 +234,8 @@ adicionar os links da galera depois ***(refs.md)***
 3. https://requests.readthedocs.io/en/latest/
 
 4. https://docs.streamlit.io
+
+5. https://github.com/leds-org/leds-tools-public/blob/main/docs/test_ai/img/fluxograma_gherkin.png
 
 ## 🔍 Pontos de Melhoria com Base na Arquitetura
 ✅ O que já é bom:
