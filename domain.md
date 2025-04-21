@@ -82,5 +82,3 @@ Esse script representa um componente da **Camada de Domínio** que automatiza a 
 A **Clean Architecture** aplicada ao **Test.AI** traz uma estrutura sólida e flexível, isolando as regras de negócio no **Domínio da Lógica**. A camada de **Domínio** permite que a lógica central seja desenvolvida e testada independentemente, o que facilita manutenções e adaptações do sistema sem impactar outras camadas. O uso de múltiplos agentes e integração com modelos LLM torna o sistema robusto e escalável, permitindo a automação na criação de testes de alta qualidade.
 
 ---
-
-Se precisar de mais detalhes sobre outros arquivos, como o `crew_xUnit.py` ou o `debate_agentes.py`, posso continuar a análise e a explicação dessa camada de domínio. Me avise!
