@@ -217,10 +217,13 @@ async def generate_gherkin_file(evento: Evento):
 - Resultado final é salvo em arquivo .feature e registrado em log (crew_log.txt).
 
 ## 🌐 Tecnologias no Front-end vs Back-end
+|Camada	| Tecnologia	| Descrição |
+|----------|----------|----------|
+|Front-end	| VS Code Extension (TypeScript) |	Responsável pela interação com o usuário e acionamento dos comandos.
+|Back-end	| Python (test-ai-leds)	| Responsável por processar os dados, interpretar arquivos e gerar os códigos.
+|Back-end   | Crew.ai | Plataforma de multi-agentes, os quais fazem a automação dos fluxos de testes.|
+|Back-end   | LLM-model | Utiliza o modelo Gemini 1.5 flash como backend da LLM |
 
-Camada	Tecnologia	Descrição
-Front-end	VS Code Extension (TypeScript)	Responsável pela interação com o usuário e acionamento dos comandos.
-Back-end	Python (test-ai-leds)	Responsável por processar os dados, interpretar arquivos e gerar os códigos.
 
 ## 📚 Referências Bibliográficas
 
