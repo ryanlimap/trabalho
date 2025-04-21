@@ -1,52 +1,54 @@
-## Arquitetura Adotada
-🏛️ Estilo Arquitetural: Clean Architecture
-A extensão e biblioteca Test.AI adotam princípios da Clean Architecture, promovendo uma forte separação de responsabilidades e alta testabilidade.
+## 🏛️ Arquitetura Adotada
+Estilo Arquitetural: Clean Architecture
 
-🎯 Objetivo:
-Garantir que regras de negócio estejam desacopladas de frameworks, interfaces de usuário, banco de dados ou qualquer tecnologia externa.
+Clean Architecture é uma estrutura de design de software com várias camadas, promovendo uma estrutura organizada e de fácil compreensão, o que é benéfico para o desenvolvimento.
 
-## 🧱 Componentes e Camadas
-1. Camada de Interface (Interface Adapters)
-Responsabilidade: Conectar os inputs dos usuários (VS Code) ao domínio da aplicação.
+Sua principal característica é a separação e independência das camadas, como o desacoplamento da lógica de negócios do sistema de influências externas como o sistema de interface do usuário (UI), frameworks, bancos de dados e assim por diante. Isso é alcançado definindo uma camada de domínio independente e isolada.
 
-Tecnologias usadas:
+🧠 Princípios Fundamentais da Clean Architecture:
+- Independência de tecnologia: O núcleo do sistema (regras de negócio) não conhece detalhes de frameworks, bibliotecas ou I/O.
 
-Visual Studio Code API: Utilizada para registrar comandos no menu de contexto.
+- Ordem de dependência: O fluxo de dependência sempre aponta para o centro — interfaces externas dependem do domínio, e nunca o contrário.
 
-Extensão escrita em TypeScript.
+- Regras de negócio isoladas: Permite reaproveitamento em outros contextos (ex: CLI, APIs, interfaces gráficas).
 
-Comunicação com arquivos .env, .andes, .feature e .cs.
+A principal ideia da Clean Architecture é separar o código em camadas concêntricas, onde:
 
-2. Camada de Aplicação (Use Cases)
-Responsabilidade: Orquestrar os fluxos de geração de código conforme a ação do usuário.
+🔄 As dependências sempre apontam para dentro:
 
-Tecnologias usadas:
+```
++------------------------+
+|      External Layer    | <- Interface com o usuário, web, banco, etc.
++------------------------+
+|    Interface Adapters  | <- Controllers, Gateways, Presenters
++------------------------+
+|     Use Cases Layer    | <- Regras de negócio da aplicação
++------------------------+
+|   Entities (Core)      | <- Regras de negócio mais genéricas
++------------------------+
+```
 
-Biblioteca Python test-ai-leds, que é chamada pela extensão para gerar os códigos.
+🧱 As camadas:
+- Frameworks & Drivers (camada externa):
+Onde ficam os frameworks, banco de dados, UI, serviços externos, etc.
 
-Scripts que interpretam os arquivos de entrada e decidem o comportamento da geração.
+- Interface Adapters:
+Camada que adapta os dados para entrada/saída (ex: controllers, presenters, repositórios).
 
-3. Camada de Domínio
-Responsabilidade: Contém a lógica central e regras de negócio do sistema.
+- Use Cases:
+Casos de uso da aplicação, orquestram as regras para resolver problemas específicos do domínio.
 
-Tecnologias usadas:
+- Entities:
+Contém as regras de negócio mais genéricas e independentes de tecnologia.
 
-Lógica de interpretação dos arquivos .andes para BDD.
+## 🧩 Aplicação no contexto do Test.AI:
 
-Geração de arquivos .feature, .cs, testes Cypress e unitários baseada em estrutura semântica.
-
-Integração com LLMs via API (ex: Gemini) para enriquecer a geração automática com inteligência artificial.
-
-4. Camada de Infraestrutura
-Responsabilidade: Faz a ponte com o mundo externo (APIs, sistemas de arquivos).
-
-Tecnologias usadas:
-
-Chamadas HTTP para LLMs (Gemini ou outro).
-
-Manipulação de arquivos e diretórios locais.
-
-Configuração por meio do .env.
+| Camada | Descrição | Exemplos |
+|----------|----------|----------|
+| Interface  | Camada de interação com o usuário. Usa a API do VS Code para capturar ações como clique direito.  | Comandos como "Generate BDD", "Generate Steps"  |
+| Aplicação  | Camada que define os fluxos principais e regras de orquestração dos dados.  | Script que decide como gerar arquivos a partir dos dados fornecidos.  |
+| Domínio  | Contém as regras de negócio puras, como interpretação do .andes e geração dos testes.  | Classes e funções Python que fazem parsing e estruturam os dados.  |
+| Infraestrutura  | Responsável por interagir com o sistema operacional, arquivos, APIs externas, .env.  | Integração com Gemini, leitura de .env, gravação de arquivos.  |
 
 ## 🌐 Tecnologias no Front-end vs Back-end
 
@@ -55,53 +57,46 @@ Front-end	VS Code Extension (TypeScript)	Responsável pela interação com o usu
 Back-end	Python (test-ai-leds)	Responsável por processar os dados, interpretar arquivos e gerar os códigos.
 
 ## 📚 Referências Bibliográficas
-Martin, R. C. (2017). Clean Architecture: A Craftsman's Guide to Software Structure and Design. Prentice Hall.
 
-Fowler, M. (2003). Patterns of Enterprise Application Architecture. Addison-Wesley.
-
-Google Developers. Documentação Gemini API
-
-VS Code API Docs: https://code.visualstudio.com/api
-
-PEP8 - Python Enhancement Proposal: https://peps.python.org/pep-0008/
+adicionar os links da galera depois ***(refs.md)***
 
 ## 🔍 Pontos de Melhoria com Base na Arquitetura
 ✅ O que já é bom:
-Baixo acoplamento entre VS Code e a lógica de geração (via Python).
+- Baixo acoplamento entre VS Code e a lógica de geração (via Python).
 
-Alta coesão nas funcionalidades automatizadas.
+- Alta coesão nas funcionalidades automatizadas.
 
-Modularidade facilita manutenção e evolução.
+- Modularidade facilita manutenção e evolução.
 
-Adoção de IA para enriquecer geração de código com contexto inteligente.
+- Adoção de IA para enriquecer geração de código com contexto inteligente.
 
 ## ⚠️ Pontos de Melhoria:
 Documentação de Interfaces
 
-Melhorar a especificação do contrato entre extensão VS Code e test-ai-leds (ex: entrada esperada, formatos de resposta).
+- Melhorar a especificação do contrato entre extensão VS Code e test-ai-leds (ex: entrada esperada, formatos de resposta).
 
-Sugestão: Usar Pydantic ou JSON Schema para estruturar e validar dados trocados.
+- Sugestão: Usar Pydantic ou JSON Schema para estruturar e validar dados trocados.
 
-Gerenciamento de Logs
+- Gerenciamento de Logs
 
-Atualmente os erros são difíceis de rastrear.
+- Atualmente os erros são difíceis de rastrear.
 
-Sugestão: Implementar sistema de log com níveis (INFO, ERROR) usando logging no Python e console no TypeScript.
+- Sugestão: Implementar sistema de log com níveis (INFO, ERROR) usando logging no Python e console no TypeScript.
 
-Testabilidade
+- Testabilidade
 
-Criar testes automatizados unitários para os scripts de geração.
+- Criar testes automatizados unitários para os scripts de geração.
 
-Utilizar mocks para testes de integração com API externa.
+- Utilizar mocks para testes de integração com API externa.
 
-Plugabilidade de LLMs
+- Plugabilidade de LLMs
 
-Hoje o sistema é acoplado à Gemini.
+- Hoje o sistema é acoplado à Gemini.
 
-Sugestão: Abstrair o serviço de LLM para suportar outras APIs (OpenAI, Anthropic, etc.).
+- Sugestão: Abstrair o serviço de LLM para suportar outras APIs (OpenAI, Anthropic, etc.).
 
-UX da Extensão
+- UX da Extensão
 
-Inserir feedback visual após a geração de código (ex: "Arquivo gerado com sucesso").
+- Inserir feedback visual após a geração de código (ex: "Arquivo gerado com sucesso").
 
-Melhorar mensagens de erro quando .env ou outros arquivos estão ausentes ou mal configurados.
+- Melhorar mensagens de erro quando .env ou outros arquivos estão ausentes ou mal configurados.

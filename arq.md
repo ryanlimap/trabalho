@@ -1,6 +1,9 @@
 ## 🏛️ Arquitetura Adotada
 Estilo Arquitetural: Clean Architecture
-O projeto Test.AI adota o padrão Clean Architecture, proposto por Robert C. Martin (Uncle Bob), com o objetivo de tornar o sistema independente de frameworks, facilmente testável, facilmente adaptável a mudanças e com uma forte separação de responsabilidades.
+
+Clean Architecture é uma estrutura de design de software com várias camadas, promovendo uma estrutura organizada e de fácil compreensão, o que é benéfico para o desenvolvimento.
+
+Sua principal característica é a separação e independência das camadas, como o desacoplamento da lógica de negócios do sistema de influências externas como o sistema de interface do usuário (UI), frameworks, bancos de dados e assim por diante. Isso é alcançado definindo uma camada de domínio independente e isolada.
 
 🧠 Princípios Fundamentais da Clean Architecture:
 - Independência de tecnologia: O núcleo do sistema (regras de negócio) não conhece detalhes de frameworks, bibliotecas ou I/O.
@@ -9,25 +12,34 @@ O projeto Test.AI adota o padrão Clean Architecture, proposto por Robert C. Mar
 
 - Regras de negócio isoladas: Permite reaproveitamento em outros contextos (ex: CLI, APIs, interfaces gráficas).
 
-## 🧱 Camadas da Arquitetura no Test.AI
+A principal ideia da Clean Architecture é separar o código em camadas concêntricas, onde:
+
+🔄 As dependências sempre apontam para dentro:
 
 ```
- +---------------------------+
-    |        Interface          |  <- Extensão VS Code (TypeScript)
-    +---------------------------+
-              ↓
-    +---------------------------+
-    |     Casos de Uso          |  <- Comandos de geração / orquestração
-    +---------------------------+
-              ↓
-    +---------------------------+
-    |     Domínio da Lógica     |  <- Regras de negócio em Python (interpretação .andes, geração de código)
-    +---------------------------+
-              ↓
-    +---------------------------+
-    |     Infraestrutura        |  <- APIs (LLMs), sistema de arquivos, variáveis de ambiente
-    +---------------------------+
++------------------------+
+|      External Layer    | <- Interface com o usuário, web, banco, etc.
++------------------------+
+|    Interface Adapters  | <- Controllers, Gateways, Presenters
++------------------------+
+|     Use Cases Layer    | <- Regras de negócio da aplicação
++------------------------+
+|   Entities (Core)      | <- Regras de negócio mais genéricas
++------------------------+
 ```
+
+🧱 As camadas:
+- Frameworks & Drivers (camada externa):
+Onde ficam os frameworks, banco de dados, UI, serviços externos, etc.
+
+- Interface Adapters:
+Camada que adapta os dados para entrada/saída (ex: controllers, presenters, repositórios).
+
+- Use Cases:
+Casos de uso da aplicação, orquestram as regras para resolver problemas específicos do domínio.
+
+- Entities:
+Contém as regras de negócio mais genéricas e independentes de tecnologia.
 
 ## 🧩 Aplicação no contexto do Test.AI:
 
