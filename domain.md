@@ -25,7 +25,6 @@ O principal objetivo dessa camada é **isolamento das regras de negócio** das c
 | **Geradores de Códigos**             | Gera automaticamente os **cenários de teste BDD** em **Gherkin**, utilizando os dados de entrada para criar arquivos que possam ser executados de forma eficiente.      |
 
 <br>
-<br>
 
 ### 🔧 Exemplos de Funcionalidade
 
@@ -54,7 +53,7 @@ Esse módulo é responsável por **gerar e revisar arquivos `.feature` no estilo
 2. **Ciclo de Geração em Rodadas**:
    - Roda três iterações para gerar e revisar arquivos `.feature`.
    - Em cada rodada:
-     dddddddddddddddddd- Um agente “**gherkin_writer**” escreve o código Gherkin.
+     - Um agente “**gherkin_writer**” escreve o código Gherkin.
      - Um agente “**gherkin_reviewer**” revisa o código gerado.
      - Ambos são configurados dinamicamente com base no turno (ex: `rodada_1`, `rodada_2`, etc.).
 
