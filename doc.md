@@ -103,7 +103,7 @@ A camada de Aplicação no Test.AI atua como um o **cerne** da aplicação. Ela 
 - **Guarda a definição dos agentes**
 - **Guarda os arquivos referentes a definição das tarefas**
 
-## 🖥️ Dominío no Test.AI
+## 🖥️ Domínio no Test.AI
 
 ### 📌 Descrição
 
